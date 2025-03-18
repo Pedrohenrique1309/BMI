@@ -51,12 +51,14 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.em
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavHostController
+import androidx.navigation.compose.rememberNavController
 import br.senai.sp.jandira.bmi.R
 import java.util.ResourceBundle
 
 @Composable
 
-fun UserDataScreen (modifier: Modifier= Modifier){
+fun UserDataScreen (navController: NavHostController?){
 
     var ageState = remember {
         mutableStateOf(value = "")
@@ -69,6 +71,7 @@ fun UserDataScreen (modifier: Modifier= Modifier){
     var heightState = remember {
         mutableStateOf(value = "")
     }
+
 
     Box(
         modifier = Modifier
@@ -108,7 +111,7 @@ fun UserDataScreen (modifier: Modifier= Modifier){
                 topStart = 32.dp
             ),
             colors = CardDefaults.cardColors(
-                contentColor = Color.White
+                Color.White
             )
 
         ) {
@@ -153,7 +156,7 @@ fun UserDataScreen (modifier: Modifier= Modifier){
                         modifier = Modifier
                             .padding(top = 10.dp)
                             .fillMaxWidth(),
-                        colors =  ButtonDefaults.buttonColors(Color(0xFF3F7FE1))
+                        colors =  ButtonDefaults.buttonColors(Color(0xFF0047F6))
                     ) {
                         Text(
                             stringResource(R.string.male)
@@ -197,7 +200,7 @@ fun UserDataScreen (modifier: Modifier= Modifier){
                         modifier = Modifier
                             .padding(top = 10.dp)
                             .fillMaxWidth(),
-                        colors =  ButtonDefaults.buttonColors(Color(0xFF3F7FE1)),
+                        colors =  ButtonDefaults.buttonColors(Color(0xFFF106A4)),
 
                     ) {
                         Text(
@@ -316,10 +319,13 @@ fun UserDataScreen (modifier: Modifier= Modifier){
                         .padding(top = 100.dp, start = 30.dp)
                 ){
                     Button(
-                        onClick = {},
+                        onClick = {
+                            navController?.navigate("result")
+                        },
                         modifier = Modifier
                             .width(370.dp)
-                            .height(50.dp),
+                            .height(50.dp)
+                            .padding(end = 35.dp),
                         shape = RoundedCornerShape(10.dp),
                       colors =  ButtonDefaults.buttonColors(Color(0xFF0047F6))
 
@@ -340,5 +346,5 @@ fun UserDataScreen (modifier: Modifier= Modifier){
 @Preview(showSystemUi = true)
 @Composable
 private fun UserDataScreenPreview() {
-    UserDataScreen()
+    UserDataScreen(null)
 }

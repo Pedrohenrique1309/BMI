@@ -33,7 +33,7 @@ class MainActivity : ComponentActivity() {
                         UserDataScreen(navController)
                     }
                     composable(
-                        route = "result"
+                        route = "BMIResultScreen"
                     ){
                         BMIResultScreen(navController)
                     }

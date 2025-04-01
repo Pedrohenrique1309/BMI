@@ -1,5 +1,6 @@
 package br.senai.sp.jandira.bmi.screens
 
+import android.content.Context
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -39,6 +40,7 @@ import androidx.compose.ui.geometry.CornerRadius
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.AlignmentLine
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
@@ -72,6 +74,13 @@ fun UserDataScreen (navController: NavHostController?){
         mutableStateOf(value = "")
     }
 
+    //Abrir o arquivo usuario.xml para recuperar o nome que o usuario digitou
+    var context = LocalContext.current
+    var sharedUserFile = context
+        .getSharedPreferences("usuario", Context.MODE_PRIVATE)
+
+    //Abrindo o arquivo chamado usuario e se nao for encontrado nenhum nome entao NAME NOT FOUND
+    val userName = sharedUserFile.getString("user_name", "Name not found!")
 
     Box(
         modifier = Modifier
@@ -95,7 +104,7 @@ fun UserDataScreen (navController: NavHostController?){
                .padding(start = 10.dp)
        ){
            Text(
-               stringResource(R.string.hi),
+               stringResource(R.string.hi) + "$userName",
                 fontSize = 30.sp,
                 fontWeight = FontWeight.Bold,
                color = Color.White
@@ -320,14 +329,19 @@ fun UserDataScreen (navController: NavHostController?){
                 ){
                     Button(
                         onClick = {
-                            navController?.navigate("result")
+                            val editor = sharedUserFile.edit()
+                            editor.putInt("user_age"   , ageState  .value.trim().toInt())
+                            editor.putInt("user_weight",weightState.value.trim().toInt())
+                            editor.putInt("user_height",heightState.value.trim().toInt())
+                            editor.apply()
+                            navController?.navigate("BMIResultScreen")
                         },
                         modifier = Modifier
                             .width(370.dp)
                             .height(50.dp)
                             .padding(end = 35.dp),
                         shape = RoundedCornerShape(10.dp),
-                      colors =  ButtonDefaults.buttonColors(Color(0xFF0047F6))
+                        colors =  ButtonDefaults.buttonColors(Color(0xFF0047F6))
 
                     ) {
                         Text(

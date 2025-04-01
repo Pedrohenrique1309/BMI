@@ -19,8 +19,22 @@
     <string name="age_result">50</string>
     <string name="weight_result">97 Kg</string>
     <string name="hight">Hight</string>
+    <string name="hight_centimeters">Hight in centimeters</string>
     <string name="hight_result">178 cm</string>
-    <string name="new_calc">New Calc</string>
+    <string name="new_calc">New Calculate</string>
+    <string name="under_weight">You are below your ideal weight</string>
+    <string name="normal_weight">You have normal body weight</string>
+    <string name="over_weight">You are slightly overweight</string>
+    <string name="class1_weight">You have Class I Obesity</string>
+    <string name="class2_weight">You have Class II Obesity</string>
+    <string name="class3_weight">You have Class III Obesity</string>
+    <string name="under_weight_table">Underweight</string>
+    <string name="normal_weight_table">Normal</string>
+    <string name="over_weight_table">OverWeight</string>
+    <string name="obesity1">Obesity Class I</string>
+    <string name="obesity2">Obesity Class II</string>
+    <string name="obesity3">Obesity Class III</string>
+
 
 </resources>
 
